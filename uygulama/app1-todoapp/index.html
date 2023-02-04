@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            padding: 0;
+            background-color: #ccc;
+            font-family: sans-serif;
+        }
+        .container{
+            width: 100%;
+            text-align: center;
+            margin-top: 100px;
+        }
+        #title{
+            text-align: center;
+            font-size: 50px;
+        }
+        #inputText{
+            width: 300px;
+            height: 46px;
+            border: 1px solid black;
+            outline: none;
+            font-size: 25px;
+            vertical-align: middle;
+            border: 3px solid orange;
+            border-radius: 15px;
+            color: purple;
+        }
+        #addTodo{
+            height: 45px;
+            width: 80px;
+            border: 1px solid black;
+            vertical-align: middle;
+            font-size: 25px;
+            outline: none;
+            cursor: pointer;
+            background-color: green;
+            color: #fff;
+            border-radius: 10px;
+        }
+        #addTodo:active{
+            background-color: blue;
+            color: #fff;
+        }
+        #clearTodo{
+            height: 45px;
+            width: 80px;
+            border: 1px solid black;
+            vertical-align: middle;
+            font-size: 25px;
+            outline: none;
+            cursor: pointer;
+            background-color: red;
+            color: #fff;
+            border-radius: 10px;
+        }
+        #clearTodo:active{
+            background-color: black;
+        }
+        .paragraf-style{
+            margin: 0;
+            margin-bottom: 5px;
+            cursor: pointer;
+            font-size: 35px;
+            color: purple;
+            text-transform: capitalize;
+        }
+        .to-dos{
+            margin-top: 25px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="title">Todo List</h1>
+        <div>
+            <input type="text" id="inputText">
+            <input type="button" value="Add" id="addTodo">
+            <input type="button" value="Clear" id="clearTodo">
+        </div>
+        <div class="to-dos" id="todo-container">
+
+        </div>
+    </div>
+    <script>
+        let addBtn=document.getElementById('addTodo');
+        let clearBtn=document.getElementById('clearTodo');
+        let text=document.getElementById('inputText');
+        let list=document.getElementById('todo-container');
+
+        addBtn.addEventListener('click',function(){
+            let paragraf=document.createElement('p');
+            paragraf.classList='paragraf-style';
+            list.appendChild(paragraf);
+            paragraf.innerHTML=text.value;
+            text.value='';
+
+            paragraf.addEventListener('click',function(){
+                paragraf.style.textDecoration='line-through';
+            });
+            paragraf.addEventListener('dblclick',function(){
+                list.removeChild(paragraf);
+            });
+            clearBtn.addEventListener('click',function(){
+                paragraf.remove();
+            });
+        });
+    </script>
+</body>
+</html>
